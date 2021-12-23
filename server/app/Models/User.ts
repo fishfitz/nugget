@@ -10,4 +10,16 @@ export default class User extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @column()
+  public slug: string
+
+  @column()
+  public name: string
+
+  @column()
+  public biography: string
+
+  @column()
+  public picture: string
 }

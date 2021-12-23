@@ -1,0 +1,104 @@
+@import "~bulma/sass/utilities/_all";
+@import "node_modules/bulmaswatch/darkly/_variables.scss";
+
+:root {
+  --primary: #EF8843;
+}
+
+$primary: #EF8843;
+$primary-light: findLightColor($primary);
+$primary-dark: findDarkColor($primary);
+$primary-invert: findColorInvert($primary);
+
+$radius: 0;
+$radius-small: 0;
+$radius-large: 0;
+$control-radius: 0;
+$toast-border-radius: 0;
+
+// Lists and maps
+$custom-colors: null !default;
+$custom-shades: null !default;
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: mergeColorMaps(
+    (
+        "white": (
+            $white,
+            $black,
+        ),
+        "black": (
+            $black,
+            $white,
+        ),
+        "light": (
+            $light,
+            $light-invert,
+        ),
+        "dark": (
+            $dark,
+            $dark-invert,
+        ),
+        "primary": (
+            $primary,
+            $primary-invert,
+            $primary-light,
+            $primary-dark,
+        ),
+        "link": (
+            $link,
+            $link-invert,
+            $link-light,
+            $link-dark,
+        ),
+        "info": (
+            $info,
+            $info-invert,
+            $info-light,
+            $info-dark,
+        ),
+        "success": (
+            $success,
+            $success-invert,
+            $success-light,
+            $success-dark,
+        ),
+        "warning": (
+            $warning,
+            $warning-invert,
+            $warning-light,
+            $warning-dark,
+        ),
+        "danger": (
+            $danger,
+            $danger-invert,
+            $danger-light,
+            $danger-dark,
+        ),
+    ),
+    $custom-colors
+);
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+@import "node_modules/bulmaswatch/darkly/_overrides.scss";
+
+.textarea, .input {
+  background-color: $grey-lightest;
+}
+
+hr {
+  background-color: $primary;
+  width: 50px;
+  margin: auto;
+}
+
+.toast.is-primary {
+  outline: 6px double $primary;
+  outline-offset: 2px;
+}

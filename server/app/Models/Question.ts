@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon';
-import { BaseModel, hasOne, HasOne, column } from '@ioc:Adonis/Lucid/Orm';
+import { BaseModel, belongsTo, BelongsTo, column } from '@ioc:Adonis/Lucid/Orm';
 import User from 'App/Models/User';
 
 export default class Question extends BaseModel {
@@ -12,6 +12,27 @@ export default class Question extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  @hasOne(() => User)
-  public user: HasOne<typeof User>
+  @column()
+  public content: string
+
+  @column()
+  public userId: number
+
+  @column()
+  public tweetId: string
+
+  @column()
+  public ip: string
+
+  @column()
+  public answer: string
+
+  @column()
+  public isDeleted: boolean
+
+  @column.dateTime()
+  public answeredAt: DateTime
+
+  @belongsTo(() => User)
+  public user: BelongsTo<typeof User>
 }

@@ -1,7 +1,7 @@
 <template>
-  <b-button @click="connectWithTwitter">
-    Connect with twitter
-  </b-button>
+  <a @click="connectWithTwitter">
+    <slot/>
+  </a>
 </template>
 
 <script>
@@ -11,5 +11,5 @@ export default {
       // todo, redirect to twitter oauth
     }
   }
-}
+};
 </script>
