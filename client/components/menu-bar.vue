@@ -1,11 +1,11 @@
 <template>
   <b-navbar type="is-transparent">
     <template #brand>
-        <b-navbar-item tag="nuxt-link" :to="{ path: '/' }">
-          <img src="/0w0.svg"/>
-          &nbsp;&nbsp;
-          <strong class="has-text-primary is-size-4"> 0w0 </strong>
-        </b-navbar-item>
+      <b-navbar-item tag="nuxt-link" :to="{ path: $store.state.me ? `/u/${$store.state.me.slug}` : '/' }">
+        <img src="/0w0.svg"/>
+        &nbsp;&nbsp;
+        <strong class="has-text-primary is-size-4"> 0w0 </strong>
+      </b-navbar-item>
     </template>
 
     <template #end>
