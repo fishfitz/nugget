@@ -49,7 +49,10 @@
       };
     },
     head() {
-      return { title: `Ask ${this.user.name}` };
+      return {
+        title: `Ask ${this.user.name}`,
+        description: this.user.biography
+      };
     },
     methods: {
       addQuestion(question) {
