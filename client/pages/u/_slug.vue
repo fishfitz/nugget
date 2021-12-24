@@ -48,6 +48,9 @@
         highlightQuestion: q ? await $axios.$get(`user/${slug}/question/${q}`) : null
       };
     },
+    head() {
+      return { title: `Ask ${this.user.name}` };
+    },
     methods: {
       addQuestion(question) {
         this.questions.data.unshift(question);

@@ -25,6 +25,7 @@
                 <div> Hey! This place is a bit of a WIP...! Here are some things to come very soon: </div>
                 <ul>
                   <li> Post medias with your answers. </li>
+                  <li> Better twitter integration. </li>
                   <li> Ban stupid ppl from your page. </li>
                 </ul>
                 <div> You can contact me at <b> leneal.wyatt<b-icon icon="at" size="is-small"/>gmail<b-icon icon="circle-small" size="is-small"/>com. </b> </div>

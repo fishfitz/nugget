@@ -1,8 +1,8 @@
 <template>
   <article class="user-card has-text-centered">
-    <p style="width: 150px">
+    <div style="display: inline-block; width: 150px">
       <b-image :src="user.picture" ratio="1by1" custom-class="picture" rounded responsive/>
-    </p>
+    </div>
     <div>
       <div class="title is-1 has-text-primary mb-0">
         {{ user.name }}

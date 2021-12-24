@@ -9,13 +9,16 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', href: '/0w0.svg' }
+      { rel: 'icon', href: '/favicon.ico' }
     ]
   },
 
   css: ['@/assets/scss/main.scss'],
 
-  plugins: ['plugins/getUser'],
+  plugins: [
+    '@/plugins/getUser',
+    { src: '@/plugins/axios.js', mode: 'server' }
+  ],
 
   components: true,
 
