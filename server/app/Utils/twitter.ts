@@ -22,10 +22,15 @@ const syncUser = async (loggedClient, refreshToken) => {
 };
 
 const getLoggedClient = async (user) => {
-  const { client: loggedClient, refreshToken } = await client.refreshOAuth2Token(user.refresh_token);
-  user.refresh_token = refreshToken;
-  await user.save();
-  return loggedClient;
+  try {
+    const { client: loggedClient, refreshToken } = await client.refreshOAuth2Token(user.refresh_token);
+    await User.query().where('id', user.id).update({ refresh_token: refreshToken });
+    return loggedClient;
+  }
+  catch (e) {
+    await User.query().where('id', user.id).update({ refresh_token: null });
+    throw new Error('TWITTER_TOKEN_DIED');
+  }
 };
 
 export async function postTweet({ user, question, answer }) {
