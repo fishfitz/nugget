@@ -33,6 +33,7 @@
     "proxy-addr": "^2.0.7",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.21",
+    "striptags": "^3.2.0",
     "text-ellipsis": "^1.0.3",
     "twitter-api-v2": "^1.8.0"
   }

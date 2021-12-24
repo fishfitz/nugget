@@ -10,7 +10,8 @@
 
       <div style="position: relative">
         <b-field>
-          <b-input v-model="answer" type="textarea" :disabled="loading" placeholder="For sure, ducks are the best!" custom-class="answer"/>
+          <b-input v-model="answer" type="textarea" :disabled="loading" :maxlength="2500" :has-counter="false"
+            placeholder="For sure, ducks are the best!" custom-class="answer"/>
         </b-field>
 
         <b-button @click="answerQuestion" :loading="loading" type="is-primary" size="is-medium" style="margin: auto" class="answer-button" outlined>
@@ -22,10 +23,6 @@
         Post it on twitter
       </b-switch>
     </div>
-
-    <b-message v-if="error">
-      {{ error }}
-    </b-message>
   </div>
 </template>
 
@@ -61,6 +58,12 @@
         }
         catch (e) {
           this.error = e;
+          this.$buefy.toast.open({
+            duration: 5000,
+            message: 'We\'re sorry something went wrong. :( Try to refresh the page and if nothing works, try to logout.',
+            type: 'is-danger',
+            position: 'is-bottom'
+          });
         }
         this.loading = false;
       }

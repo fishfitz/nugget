@@ -72,8 +72,18 @@
           icon: 'delete-sweep',
           hasIcon: true,
           onConfirm: async () => {
-            await this.$axios.$delete(`/user/${this.user.slug}/question/${question.id}`);
-            this.questions.data.splice(this.questions.data.indexOf(question), 1);
+            try {
+              await this.$axios.$delete(`/user/${this.user.slug}/question/${question.id}`);
+              this.questions.data.splice(this.questions.data.indexOf(question), 1);
+            }
+            catch (e) {
+              this.$buefy.toast.open({
+                duration: 5000,
+                message: 'We\'re sorry something went wrong. :( Try to refresh the page and if nothing works, try to logout.',
+                type: 'is-danger',
+                position: 'is-bottom'
+              });
+            }
           }
         });
       },

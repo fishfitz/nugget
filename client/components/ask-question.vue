@@ -1,16 +1,12 @@
 <template>
   <div style="position: relative">
     <b-field :label="$store.state.me && user.slug === $store.state.me.slug ? 'Ask yourself! Nobody will notice.' : 'Hey anon, ask me something!'">
-      <b-input v-model="content" type="textarea" :disabled="loading" :placeholder="randomQuestion"/>
+      <b-input v-model="content" type="textarea" :disabled="loading" :placeholder="randomQuestion" :maxlength="2500" :has-counter="false"/>
     </b-field>
 
     <b-button @click="ask" :loading="loading" :disabled="content.length < 5" class="ask" type="is-primary" size="is-medium" outlined>
       Ask!
     </b-button>
-
-    <b-message v-if="error">
-      {{ error }}
-    </b-message>
   </div>
 </template>
 
@@ -40,6 +36,12 @@
         }
         catch (e) {
           this.error = e;
+          this.$buefy.toast.open({
+            duration: 5000,
+            message: 'We\'re sorry something went wrong. :( Try to refresh the page and if nothing works, try to logout.',
+            type: 'is-danger',
+            position: 'is-bottom'
+          });
         }
         this.loading = false;
       }

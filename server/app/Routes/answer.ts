@@ -1,5 +1,6 @@
 import { pick } from 'lodash';
 import { DateTime } from 'luxon';
+import stripHtml from 'striptags';
 import Question from 'App/Models/Question';
 import User from 'App/Models/User';
 import { postTweet } from 'App/Utils/twitter';
@@ -7,7 +8,6 @@ import { postTweet } from 'App/Utils/twitter';
 export default async ({ request, auth }) => {
   const { slug, id } = request.params();
   const { answer, tweet } = request.all();
-  /* todo: sanitize answer */
 
   const user = await User.findByOrFail('slug', slug);
   await auth.use('web').authenticate();
@@ -17,7 +17,7 @@ export default async ({ request, auth }) => {
 
   await question
     .merge({
-      answer,
+      answer: stripHtml(answer || '').slice(0, 2500),
       answeredAt: DateTime.now(),
       tweetId: tweet ? (await postTweet({ user, question, answer })) : undefined
     })
