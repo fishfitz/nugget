@@ -1,7 +1,7 @@
 <template>
   <div style="position: relative; height: calc(100vh - 120px)">
     <section class="hero is-primary is-halfheight">
-      <div class="hero-body" style="width: 480px; margin: auto">
+      <div class="hero-body" style="margin: auto">
         <div class="title">
           <b> 0w0 what's this? </b>
           <br/><br/>
