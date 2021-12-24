@@ -1,6 +1,6 @@
 export default {
   head: {
-    title: 'nugget',
+    title: '0w0 Q&A',
     htmlAttrs: { lang: 'en' },
     meta: [
       { charset: 'utf-8' },
@@ -38,5 +38,5 @@ export default {
 
   build: {},
 
-  ssr: false
+  ssr: true
 };
