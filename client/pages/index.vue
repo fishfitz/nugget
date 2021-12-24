@@ -42,9 +42,15 @@
   export default {
     async middleware({ query, store, redirect, $axios }) {
       if (query.code && query.state) {
-        await $axios.$get('/twitter/callback', { params: query });
-        await store.dispatch('FETCH_ME');
-        redirect(`/u/${store.state.me.slug}`);
+        try {
+          await $axios.$get('/twitter/callback', { params: query });
+          await store.dispatch('FETCH_ME');
+          if (!store.state.me) throw new Error('NO_USER');
+          redirect(`/u/${store.state.me.slug}`);
+        }
+        catch (e) {
+          redirect('/error');
+        }
       }
     }
   };

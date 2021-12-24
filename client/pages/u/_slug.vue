@@ -1,30 +1,36 @@
 <template>
   <div>
-    <user-card :user="user"/>
+    <template v-if="user">
+      <user-card :user="user"/>
 
-    <br/><hr/><br/>
-
-    <template v-if="highlightQuestion">
-      <question-thread :user="user" :question="highlightQuestion" @answer="questionToAnswer = $event" @delete="deleteQuestion" :highlight="true"/>
       <br/><hr/><br/>
-    </template>
 
-    <ask-question :user="user" @done="addQuestion"/>
-
-    <br/><hr/><br/>
-
-    <div>
-      <question-thread v-for="question in questions.data" :key="question.id"
-        :user="user" :question="question"
-        @answer="questionToAnswer = $event" @delete="deleteQuestion"/>
-      <mugen-scroll :handler="loadMore" :should-handle="!loading && questions.meta.last_page !== page"/>
-    </div>
-
-    <b-modal :active="!!questionToAnswer" @close="questionToAnswer = null" has-modal-card trap-focus>
-      <template #default="props">
-        <answer-question v-if="questionToAnswer" :user="user" :question="questionToAnswer" @done="updateQuestion"/>
+      <template v-if="highlightQuestion">
+        <question-thread :user="user" :question="highlightQuestion" @answer="questionToAnswer = $event" @delete="deleteQuestion" :highlight="true"/>
+        <br/><hr/><br/>
       </template>
-    </b-modal>
+
+      <ask-question :user="user" @done="addQuestion"/>
+
+      <br/><hr/><br/>
+
+      <div>
+        <question-thread v-for="question in questions.data" :key="question.id"
+          :user="user" :question="question"
+          @answer="questionToAnswer = $event" @delete="deleteQuestion"/>
+        <mugen-scroll :handler="loadMore" :should-handle="!loading && questions.meta.last_page !== page"/>
+      </div>
+
+      <b-modal :active="!!questionToAnswer" @close="questionToAnswer = null" has-modal-card trap-focus>
+        <template #default="props">
+          <answer-question v-if="questionToAnswer" :user="user" :question="questionToAnswer" @done="updateQuestion"/>
+        </template>
+      </b-modal>
+    </template>
+    <div v-else class="has-text-centered">
+      <h1 class="title is-1"> Oh no, this user is gone... actually it may have never existed. </h1>
+      <nuxt-link to="/" class="button is-large is-primary"> Back to index I guess </nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -42,16 +48,21 @@
       };
     },
     async asyncData({ $axios, params: { slug }, query: { q } }) {
-      return {
-        user: await $axios.$get(`user/${slug}`),
-        questions: await $axios.$get(`user/${slug}/questions`),
-        highlightQuestion: q ? await $axios.$get(`user/${slug}/question/${q}`) : null
-      };
+      try {
+        return {
+          user: await $axios.$get(`user/${slug}`),
+          questions: await $axios.$get(`user/${slug}/questions`),
+          highlightQuestion: q ? await $axios.$get(`user/${slug}/question/${q}`) : null
+        };
+      }
+      catch (e) {
+        return { user: null, questions: { data: [] } };
+      }
     },
     head() {
       return {
-        title: `Ask ${this.user.name}`,
-        description: this.user.biography
+        title: `Ask ${this.user?.name}`,
+        description: this.user?.biography
       };
     },
     methods: {
