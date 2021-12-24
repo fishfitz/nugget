@@ -8,7 +8,7 @@
         {{ user.name }}
       </div>
 
-      <div> {{ user.biography }} </div>
+      <div style="max-width: 400px; margin: auto"> {{ user.biography }} </div>
 
       <div class="has-text-centered">
         <a :href="`https://twitter.com/${user.slug}`">

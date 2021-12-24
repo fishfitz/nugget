@@ -14,7 +14,8 @@ export default class Users extends BaseSchema {
       table.text('biography');
       table.text('picture');
 
-      table.jsonb('twitter').defaultTo('{}');
+      table.string('twitter_id');
+      table.string('refresh_token');
     });
   }
 

@@ -22,4 +22,10 @@ export default class User extends BaseModel {
 
   @column()
   public picture: string
+
+  @column()
+  public twitter_id: string
+
+  @column()
+  public refresh_token: string
 }

@@ -7,8 +7,9 @@
 <script>
 export default {
   methods: {
-    connectWithTwitter() {
-      // todo, redirect to twitter oauth
+    async connectWithTwitter() {
+      const url = await this.$axios.$get('/twitter/redirect');
+      window.location = url;
     }
   }
 };

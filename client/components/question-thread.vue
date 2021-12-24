@@ -4,7 +4,7 @@
       <b-button v-if="isOwner" :icon-left="question.answered_at ? 'pen': 'message'" @click="$emit('answer', question)" :type="question.answered_at ? 'is-ghost' : 'is-primary'" outlined>
         <template v-if="!question.answered_at"> Reply </template>
       </b-button>
-      <b-button v-if="question.answered_at" @click="shareQuestion" icon-left="share-variant" type="is-ghost"/>
+      <b-button v-if="question.answered_at" @click="shareQuestion" icon-left="link" type="is-ghost"/>
       <b-button v-if="isOwner" @click="deleteQuestion" icon-left="delete" type="is-ghost"/>
     </div>
     <small> {{ createdAt }} </small>
@@ -28,7 +28,7 @@
     props: ['user', 'question', 'highlight'],
     computed: {
       isOwner() {
-        return true;
+        return this.user.slug === this.$store.state.me?.slug;
       },
       createdAt() {
         return format(new Date(this.question.created_at));

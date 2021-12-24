@@ -9,13 +9,13 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', href: '/favicon.png' }
+      { rel: 'icon', href: '/0w0.svg' }
     ]
   },
 
   css: ['@/assets/scss/main.scss'],
 
-  plugins: [],
+  plugins: ['plugins/getUser'],
 
   components: true,
 
@@ -31,7 +31,7 @@ export default {
   axios: {
     proxy: true,
     prefix: '/api/',
-    retry: { retries: 2 }
+    retry: { retries: 0 }
   },
 
   proxy: { '/api/': { target: process.env.API_URL, pathRewrite: { '^/api/': '' } } },

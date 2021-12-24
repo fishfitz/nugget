@@ -1,6 +1,6 @@
 <template>
   <div style="position: relative">
-    <b-field label="Hey anon, ask me something!">
+    <b-field :label="$store.state.me && user.slug === $store.state.me.slug ? 'Ask yourself! Nobody will notice.' : 'Hey anon, ask me something!'">
       <b-input v-model="content" type="textarea" :disabled="loading" :placeholder="randomQuestion"/>
     </b-field>
 
