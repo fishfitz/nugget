@@ -13,7 +13,7 @@
             <b> Step 3. </b> You share your cool answers. <br/>
             <br/><br/>
             <oauth-twitter>
-              <b-button size="is-large" type="is-primary" icon-left="twitter" inverted>
+              <b-button size="is-large" type="is-primary" icon-left="twitter" inverted expanded>
                 &nbsp;So basically you click here
               </b-button>
             </oauth-twitter>
@@ -56,5 +56,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @media (max-width: 500px) {
+      transform: translate(-50%, -50%) scale(.65);
+    }
   }
 </style>

@@ -13,7 +13,7 @@
         <div v-if="$store.state.me">
           <b-navbar-dropdown arrowless right>
             <template slot="label">
-              <figure class="image">
+              <figure class="image is-hidden-mobile">
                 <img :src="$store.state.me.picture" class="is-rounded"/>
               </figure>
             </template>

@@ -87,6 +87,7 @@ $link-focus-border: $primary;
 
 $scheme-main: $primary;
 $navbar-dropdown-background-color: $primary;
+$navbar-burger-color: $primary;
 
 $family-primary: 'Poppins', sans-serif!important;
 
@@ -109,4 +110,12 @@ hr {
 .toast.is-primary {
   outline: 6px double $primary;
   outline-offset: 2px;
+}
+
+.navbar-menu {
+  background-color: transparent!important;
+}
+
+a:hover {
+  color: $primary;
 }
