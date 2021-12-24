@@ -18,7 +18,7 @@
               </b-button>
             </oauth-twitter>
 
-            <br/><br/><br/><hr style="background-color: white"/><br/>
+            <br/><br/><br/><hr style="background-color: white"/><br/><br/>
 
             <div class="content">
               <small class="is-size-7">
